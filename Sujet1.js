@@ -1,12 +1,10 @@
 //le but étant de ne pas se faire chier, j'ai essayé direct de faire le mode difficile...
 
-
-const fs = require('fs');
-
-const list = process.argv[2];
+const list = [48, -2, 6, 12, 0, -4];
+const k = prompt('choisi la clef');
 
 //reste a voir si c'est la bonne solution...
-const singlePass = (data, k) => {
+const singlePass = (array, k) => {
   let searchValues = new Set();
   searchValues.add(k - array[0]);
   for (let i = 1; i < array.length; i++) {
@@ -20,13 +18,4 @@ const singlePass = (data, k) => {
   return false;
 };
 
-
-try {
-    const data = fs.readFileSync(list, 'utf8');
-    let dataArray = data.split(' ');
-    dataArray = dataArray.map(Number);
-    const k = prompt('choose the key to test');
-    console.log(singlePass(dataArray, k));
-} catch (error) {
-    console.error(error.message);
-}
+console.log(singlePass(list, k));

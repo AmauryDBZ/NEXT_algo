@@ -1,20 +1,19 @@
 //le but étant de ne pas se faire chier, j'ai essayé direct de faire le mode difficile...
 
-
-const fs = require('fs');
-
-const list = process.argv[2];
+const list2 = [3, 7, 8, 3, 6, 1];
 
 //reste a voir si c'est la bonne solution...
-
-
-
-try {
-    const data = fs.readFileSync(list, 'utf8');
-    let dataArray = data.split(' ');
-    dataArray = dataArray.map(Number);
-    const k = prompt('choose the key to test');
-    console.log(singlePass(dataArray, k));
-} catch (error) {
-    console.error(error.message);
+const singlePass = (data) => {
+  let reversed = data.reverse();
+  let key = 0;
+  let max = 0;
+  for (var i = 0; i < reversed.length; i++) {
+    if (reversed[i] > max) {
+      key++;
+      max = reversed[i];
+    }
+  }
+  return key;
 }
+
+console.log(singlePass(list2));
